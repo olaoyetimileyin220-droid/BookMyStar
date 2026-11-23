@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BookMyStar | Book artists, actors and speakers across the USA</title>
+<meta name="description" content="BookMyStar books musicians, actors, DJs, athletes and keynote speakers for private and corporate events across the USA.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+<style>
+:root{--ink:#000;--mute:#5b5b5b;--line:#e4e4e4;--accent:#b3122b;--r:8px;--head:'Sora',sans-serif;--body:'Inter',system-ui,sans-serif}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+html,body{max-width:100%;overflow-x:clip}
+body{font-family:var(--body);color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--head);font-weight:600;letter-spacing:-.03em;line-height:1.05}
+h2{font-size:clamp(2.1rem,4.6vw,3.8rem)}
+img,video{object-fit:cover;width:100%;height:100%;display:block}
+section{padding:7rem 0}
+.page{padding-top:9rem;min-height:80vh}
+a{color:inherit}:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.lead-s{color:var(--mute);max-width:50ch;font-size:1.05rem}
+.form-control,.form-select{border-radius:var(--r);border-color:#cfcfcf;padding:.75rem .9rem;font-size:.95rem}
+label{font-size:.85rem;font-weight:500;margin-bottom:.3rem}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:2000}
+.btn-fill{position:relative;overflow:hidden;z-index:0;display:inline-block;text-decoration:none;text-align:center;cursor:pointer;border:1.5px solid var(--ink);border-radius:var(--r);padding:.8rem 1.5rem;font-weight:500;font-size:.95rem;background:transparent;color:var(--ink);transition:color .35s,border-color .35s}
+.btn-fill::before{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:-1}
+.btn-fill:hover{color:#fff}.btn-fill:hover::before{transform:scaleX(1)}
+.btn-fill.solid{background:var(--ink);color:#fff}.btn-fill.solid::before{background:var(--accent)}.btn-fill.solid:hover{border-color:var(--accent)}
+.btn-fill.light{border-color:#fff;color:#fff}.btn-fill.light::before{background:#fff}.btn-fill.light:hover{color:#000}
+.navbar{padding:1.1rem 0;transition:.3s}
+.navbar .nav-link,.navbar-brand{color:#fff;transition:color .3s}
+.navbar .nav-link{font-size:.92rem;font-weight:500;padding:.5rem .7rem!important}
+.navbar-brand{font-family:var(--head);font-weight:700;font-size:1.4rem}
+.navbar-toggler{color:#fff;border-color:rgba(255,255,255,.6)}
+.navbar::before{content:'';position:absolute;inset:0;z-index:-1;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);opacity:0;transition:opacity .3s}
+.navbar.scrolled,.navbar.inner{box-shadow:0 1px 0 var(--line);padding:.6rem 0}
+.navbar.scrolled::before,.navbar.inner::before{opacity:1}
+.scrolled .nav-link,.scrolled .navbar-brand,.inner .nav-link,.inner .navbar-brand,.scrolled .navbar-toggler,.inner .navbar-toggler{color:var(--ink)}
+.scrolled .btn-fill.light,.inner .btn-fill.light{border-color:var(--ink);color:var(--ink)}
+.scrolled .btn-fill.light::before,.inner .btn-fill.light::before{background:var(--ink)}
+.scrolled .btn-fill.light:hover,.inner .btn-fill.light:hover{color:#fff}
+.nav-link.on{box-shadow:inset 0 -2px var(--accent)}
+.oc-brand{font-family:var(--head);font-weight:700;font-size:1.4rem}
+@media(max-width:1199px){
+.offcanvas{--bs-offcanvas-width:min(320px,85vw);background:#000;color:#fff}
+.offcanvas-header{padding:1.2rem 1.4rem}
+.offcanvas-body{padding:.5rem 1.4rem 2rem}
+.navbar .offcanvas .nav-link{color:#fff;font-size:1.15rem;padding:.85rem 0!important;border-bottom:1px solid rgba(255,255,255,.14);box-shadow:none}
+.navbar .offcanvas .nav-link.on{color:#fff;border-bottom-color:var(--accent);box-shadow:inset 0 -2px var(--accent)}
+.offcanvas .btn-fill.light{display:block;margin-top:1.5rem;border-color:#fff;color:#fff}
+.offcanvas .btn-fill.light::before{background:#fff}
+.offcanvas .btn-fill.light:hover{color:#000}
+}
+.hero{height:100svh;min-height:720px;padding:0;position:relative;color:#fff;background:#000}
+.hero .swiper,.hero .swiper-slide{height:100%}
+.hero .swiper-slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85),rgba(0,0,0,.4) 60%,rgba(0,0,0,.2))}
+.hero .swiper-slide img{position:absolute;inset:0;transform:scale(1.08);transition:transform 7s ease-out}
+.hero .swiper-slide-active img{transform:scale(1)}
+.slide-copy{position:absolute;inset:0 0 150px;z-index:2;display:flex;align-items:center}
+.slide-copy h1{font-size:clamp(2.6rem,6.5vw,5.6rem);margin:.8rem 0 1.2rem}
+.slide-copy p{max-width:46ch;font-size:1.1rem;opacity:.9;margin-bottom:1.8rem}
+.hero .swiper-pagination{top:45%;right:1.5rem;left:auto;bottom:auto;width:auto}
+.hero .swiper-pagination-bullet{display:block;margin:8px 0!important;background:#fff;width:3px;height:28px;border-radius:0;opacity:.45}
+.hero .swiper-pagination-bullet-active{opacity:1;background:var(--accent)}
+.hform{position:absolute;z-index:5;left:50%;bottom:2.2rem;transform:translateX(-50%);width:min(1180px,94vw);background:#fff;color:#000;border-radius:var(--r);padding:1.1rem 1.2rem;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+@media(max-width:991px){.hero{min-height:900px}.slide-copy{inset:0 0 430px}}
+.stats{padding:5rem 0;border-bottom:1px solid var(--line)}
+.stat b{display:block;font-family:var(--head);font-weight:600;font-size:clamp(2.8rem,6vw,5rem);line-height:1;letter-spacing:-.04em}.stat span{color:var(--mute)}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,300px);gap:1rem}
+.t-card{position:relative;overflow:hidden;border-radius:var(--r);color:#fff;background:#111}
+.t-card img{transition:transform .8s}.t-card:hover img{transform:scale(1.07)}
+.t-card::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.9),transparent 65%)}
+.t-body{position:absolute;inset:auto 0 0 0;padding:1.3rem;z-index:2}
+.t-card h3{font-size:1.5rem;margin:.2rem 0}.t-large{grid-column:span 2;grid-row:span 2}.t-large h3{font-size:2.6rem}.t-tall{grid-column:4;grid-row:1/3}
+.t-meta{font-size:.85rem;opacity:.9;display:flex;gap:.3rem 1rem;flex-wrap:wrap;margin-bottom:.7rem}
+.badge-s{position:absolute;top:1rem;left:1rem;z-index:3;font-size:.75rem;font-weight:600;padding:.3rem .7rem;border-radius:var(--r);background:#fff;color:#000}
+.badge-s.new{background:var(--accent);color:#fff}.badge-s.booked{background:#000;color:#fff;border:1px solid #fff}
+.t-card .btn-fill{padding:.5rem 1rem;font-size:.85rem}
+@media(max-width:991px){.bento{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:300px}.t-large{grid-column:span 2;grid-row:auto}.t-tall{grid-column:auto;grid-row:auto}}
+@media(max-width:575px){.bento{grid-template-columns:1fr}.t-large{grid-column:auto}}
+.why{display:flex;gap:.8rem;height:480px}
+.why div{flex:1;position:relative;overflow:hidden;border-radius:var(--r);transition:flex .6s;color:#fff;cursor:pointer}
+.why div:hover,.why div:focus-within{flex:3.2}
+.why div::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.88),transparent 70%)}
+.why img{position:absolute;inset:0}.why article{position:absolute;z-index:2;bottom:0;padding:1.4rem;margin:0}.why h3{font-size:1.4rem;margin-bottom:.4rem}.why span{display:block;max-width:34ch;font-size:.92rem;opacity:0;max-height:0;transition:.5s}.why div:hover span,.why div:focus-within span{opacity:.9;max-height:120px}
+@media(max-width:767px){.why{flex-direction:column;height:auto}.why div{min-height:240px}.why span{opacity:.9;max-height:none}}
+.ev{position:relative;background:url(https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=1800&q=70) center/cover}
+.ev::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.6)}
+.glass{position:relative;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:var(--r);padding:2.4rem;color:#fff}
+.cta{background:#000;color:#fff;text-align:center}
+footer{background:#0a0a0a;color:#fff;padding:5rem 0 2rem}
+footer a{text-decoration:none;opacity:.75}footer a:hover{opacity:1}
+footer .form-control{background:transparent;border-color:#666;color:#fff}footer .form-control::placeholder{color:#999}
+.chip{border:1.5px solid var(--line);border-radius:var(--r);padding:.6rem 1.1rem;background:#fff;font-weight:500}.chip.on{background:#000;color:#fff;border-color:#000}
+.pg .page-link{color:#000;border-radius:var(--r)!important;margin:0 .15rem}.pg .active .page-link{background:#000;border-color:#000;color:#fff}
+.tl li{padding:.6rem 0 .6rem 1.6rem;position:relative;border-left:2px solid var(--line)}.tl li::before{content:"";position:absolute;left:-7px;top:1rem;width:12px;height:12px;border-radius:50%;background:var(--accent)}.tl li.todo::before{background:#ccc}
+#toast{position:fixed;right:1rem;bottom:1rem;z-index:4000;width:min(360px,92vw);background:#000;color:#fff;border-radius:var(--r);padding:1.1rem 1.2rem;border-left:4px solid var(--accent);transform:translateX(130%);visibility:hidden;transition:transform .5s,visibility .5s;box-shadow:0 14px 40px rgba(0,0,0,.35)}
+#toast.show{transform:none;visibility:visible}
+@media(max-width:767px){.row.g-5{--bs-gutter-x:1.5rem}.stat b{font-size:2.3rem}footer a,footer span{overflow-wrap:anywhere}section{padding:4.5rem 0}.stats{padding:3rem 0}.page{padding-top:7rem}.glass{padding:1.5rem}.t-large h3{font-size:2rem}.slide-copy p{font-size:1rem}footer{padding:3.5rem 0 2rem}.hero .swiper-pagination{right:.6rem}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav class="navbar navbar-expand-xl fixed-top" id="nav"><div class="container">
+ <a class="navbar-brand" href="#/">BookMyStar</a>
+ <button class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#menu" aria-controls="menu" aria-label="Open menu"><i class="bi bi-list fs-3"></i></button>
+ <div class="offcanvas offcanvas-end" tabindex="-1" id="menu" aria-label="Main menu">
+  <div class="offcanvas-header"><span class="oc-brand">BookMyStar</span><button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close menu"></button></div>
+  <div class="offcanvas-body">
+   <ul class="navbar-nav mx-auto" id="links"></ul>
+   <a href="#/" onclick="book()" class="btn-fill light"><i class="bi bi-stars me-2"></i>Book talent</a>
+  </div></div></div></nav>
+
+<!-- HOME -->
+<div data-v="home">
+<header class="hero"><div class="swiper hs"><div class="swiper-wrapper" id="slides"></div><div class="swiper-pagination"></div></div>
+ <form class="hform" id="hf"><div class="row g-2 align-items-end">
+  <div class="col-lg-3 col-12"><label for="h-t">Who would you like to book?</label><select id="h-t" class="form-select"></select></div>
+  <div class="col-lg-1 col-3"><label for="h-d">Day</label><select id="h-d" class="form-select"></select></div>
+  <div class="col-lg-2 col-4"><label for="h-m">Month</label><select id="h-m" class="form-select"></select></div>
+  <div class="col-lg-1 col-5"><label for="h-y">Year</label><select id="h-y" class="form-select"></select></div>
+  <div class="col-lg-2 col-12 col-sm-6"><label for="h-n">Full name</label><input id="h-n" class="form-control" required></div>
+  <div class="col-lg-2 col-12 col-sm-6"><label for="h-e">Email</label><input id="h-e" type="email" class="form-control" required></div>
+  <div class="col-lg-1 col-12"><button class="btn-fill solid w-100 px-2">Request</button></div></div></form>
+</header>
+<section class="stats"><div class="container"><div class="row g-4">
+ <div class="col-6 col-md-3 stat"><b data-count="120" data-suf="+">0</b><span>Artists and speakers</span></div>
+ <div class="col-6 col-md-3 stat"><b data-count="1000" data-suf="+">0</b><span>Events delivered</span></div>
+ <div class="col-6 col-md-3 stat"><b data-count="50" data-suf="+">0</b><span>Countries</span></div>
+ <div class="col-6 col-md-3 stat"><b>24/7</b><span>Booking support</span></div></div></div></section>
+<section><div class="container">
+ <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-5" data-aos="fade-up"><h2>Featured talent</h2><a href="#/talent" class="btn-fill solid">See all talents</a></div>
+ <div class="bento" id="bento"></div></div></section>
+<section style="padding-top:0"><div class="container">
+ <div class="mb-5" data-aos="fade-up"><h2>Why book with us</h2><p class="lead-s mt-3">Hover a photo to see what you get with every booking.</p></div>
+ <div class="why" data-aos="fade-up">
+  <div tabindex="0"><img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=900&q=70" alt="Concert crowd" loading="lazy"><article><h3>Private by default</h3><span>NDAs, private arrivals and professional security on request.</span></article></div>
+  <div tabindex="0"><img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=900&q=70" alt="Singer on stage" loading="lazy"><article><h3>Any city</h3><span>We coordinate travel, riders and permits wherever your event takes place.</span></article></div>
+  <div tabindex="0"><img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=900&q=70" alt="Festival crowd" loading="lazy"><article><h3>Clear terms</h3><span>Every booking is backed by a written agreement and itemised fees.</span></article></div>
+  <div tabindex="0"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=900&q=70" alt="Band performing" loading="lazy"><article><h3>Support 24/7</h3><span>A named agent from first call to final encore.</span></article></div></div></div></section>
+<section class="ev"><div class="container position-relative"><div class="row"><div class="col-lg-7"><div class="glass" data-aos="fade-up">
+ <p class="mb-2">Dec 31 · Grand Plaza Hotel, New York</p><h2>New Year's Eve Gala with Aria Monroe</h2>
+ <p class="mt-3 opacity-75">Black-tie dinner, a live set at 10 pm and the midnight countdown. Part of the proceeds supports local music education.</p>
+ <div class="d-flex flex-wrap align-items-center gap-3 mt-4"><b class="fs-3" style="font-family:var(--head)">$500</b><a href="#/" class="btn-fill light" onclick="book(0,'Dec 31 gala ticket')">Book now</a><a href="#/events" class="btn-fill light">All events</a></div></div></div></div></div></section>
+<section class="cta"><div class="container"><h2>Want our stars to celebrate with you?</h2><p class="opacity-75 mt-3">Send your date and city. We reply within one business day.</p>
+ <a href="#/" onclick="book()" class="btn-fill light m-1">Start a request</a><a href="#/contact" class="btn-fill light m-1">Talk to us</a></div></section>
+</div>
+
+<!-- TALENT -->
+<div data-v="talent" class="page" hidden><div class="container">
+ <h2>Our talent</h2><p class="lead-s mt-3 mb-4">Browse performers, speakers and athletes by country and niche. Fees are starting prices for a standard 60-minute private appearance.</p>
+ <div class="row g-2 mb-4"><div class="col-md-4"><label for="c-c">Country</label><select id="c-c" class="form-select"></select></div><div class="col-md-4"><label for="c-n">Niche</label><select id="c-n" class="form-select"></select></div></div>
+ <div class="row g-3" id="grid"></div><nav class="pg mt-5"><ul class="pagination justify-content-center" id="pg"></ul></nav></div></div>
+<!-- EVENTS -->
+<div data-v="events" class="page" hidden><div class="container"><h2>Upcoming events</h2><p class="lead-s mt-3 mb-5">Ticketed galas and private concerts with proceeds supporting local causes.</p>
+ <div class="row g-4"><div class="col-md-6"><div class="t-card" style="height:420px"><img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=900&q=70" alt="Stage lights" loading="lazy"><div class="t-body"><h3>New Year's Eve Gala</h3><div class="t-meta"><span><i class="bi bi-calendar"></i> Dec 31</span><span><i class="bi bi-geo-alt"></i> Grand Plaza Hotel, New York</span><span>$500</span></div><a href="#/" class="btn-fill light" onclick="book(0,'Dec 31 gala ticket')">Book now</a></div></div></div></div></div></div>
+<!-- ABOUT -->
+<div data-v="about" class="page" hidden><div class="container"><div class="row g-5"><div class="col-lg-6"><h2>Trusted by hosts who cannot afford a bad night</h2><p class="lead-s mt-4">BookMyStar is a booking agency for musicians, actors, athletes and speakers. Since our first event we have handled contracts, travel, riders and security so hosts can focus on their guests.</p><p class="lead-s">Every booking has a written agreement, an itemised fee and one agent who stays with you until the last guest leaves. That is how we have delivered over 1,000 events in more than 50 countries.</p><a href="#/contact" class="btn-fill solid mt-3">Talk to an agent</a></div>
+ <div class="col-lg-6" style="height:480px"><img style="border-radius:8px" src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=1000&q=70" alt="DJ at a live event" loading="lazy"></div></div></div></div>
+<!-- SERVICES -->
+<div data-v="services" class="page" hidden><div class="container"><h2>What we do</h2><p class="lead-s mt-3 mb-5">We find the right name, negotiate the terms and deliver the night.</p><div class="row g-4" id="svc"></div></div></div>
+<!-- DONATE -->
+<div data-v="donate" class="page" hidden><div class="container"><div class="row g-5"><div class="col-lg-5"><h2>Support music and the arts</h2><p class="lead-s mt-4">A share of every gala goes to local music education and youth arts programs. Your gift helps fund instruments, lessons and stage time for students who would otherwise go without.</p></div>
+ <div class="col-lg-6 offset-lg-1"><form id="df" class="row g-3"><div class="col-12"><label>Amount (USD)</label><div id="amts" class="d-flex flex-wrap gap-2"></div></div>
+ <div class="col-md-6"><label for="d-n">Full name</label><input id="d-n" class="form-control" required></div><div class="col-md-6"><label for="d-e">Email</label><input id="d-e" type="email" class="form-control" required></div>
+ <div class="col-12"><label for="d-m">Message (optional)</label><textarea id="d-m" class="form-control" rows="3"></textarea></div><div class="col-12"><button class="btn-fill solid">Continue to payment</button></div></form></div></div></div></div>
+<!-- TRACK -->
+<div data-v="track" class="page" hidden><div class="container" style="max-width:720px"><h2>Track your booking</h2><p class="lead-s mt-3">Enter the reference code from your confirmation, for example BMS-48213.</p>
+ <form id="tf" class="d-flex gap-2 mt-4"><input id="t-c" class="form-control" placeholder="BMS-00000" required aria-label="Order code"><button class="btn-fill solid text-nowrap">Track</button></form><div id="tr" class="mt-4"></div></div></div>
+<!-- CONTACT -->
+<div data-v="contact" class="page" hidden><div class="container"><div class="row g-5"><div class="col-lg-6"><h2>Contact us</h2><form id="cf" class="row g-3 mt-2">
+ <div class="col-12"><label for="c1">Full name</label><input id="c1" class="form-control" required></div><div class="col-md-6"><label for="c2">Email</label><input id="c2" type="email" class="form-control" required></div><div class="col-md-6"><label for="c3">Phone number</label><input id="c3" type="tel" class="form-control"></div>
+ <div class="col-12"><label for="c4">Message</label><textarea id="c4" class="form-control" rows="5" required></textarea></div><div class="col-12"><button class="btn-fill solid">Send message</button></div></form></div>
+ <div class="col-lg-6"><h3 class="mb-3">Frequently asked questions</h3><div class="accordion" id="faq"></div></div></div></div></div>
+
+<footer><div class="container"><div class="row g-5 mb-5"><div class="col-lg-6"><h3 class="fs-2">Stay in the loop</h3><p class="text-white-50">New talent, events and launches, straight to your inbox.</p>
+ <form id="nf" class="d-flex gap-2"><input type="email" class="form-control" placeholder="Email address" required aria-label="Email"><button class="btn-fill light">Join</button></form></div>
+ <div class="col-6 col-lg-3 d-flex flex-column gap-2" id="flinks"></div>
+ <div class="col-6 col-lg-3 d-flex flex-column gap-2"><a href="mailto:bookings@bookmystar.example">bookings@bookmystar.example</a><a href="tel:+10000000000">+1 (000) 000-0000</a><span class="text-white-50">100 Example Avenue, Los Angeles, CA</span></div></div>
+ <div class="d-flex flex-wrap justify-content-between gap-2 pt-4 border-top border-secondary small text-white-50"><span>© 2026 BookMyStar. Sample talent, fees and copy.</span><span><a href="#/">Privacy Policy</a> · <a href="#/">Terms of Service</a></span></div></div></footer>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+const U=(id,w=800)=>`https://images.unsplash.com/photo-${id}?w=${w}&q=70`;
+/* Sample roster: replace with talent you are authorised to represent. [name,niche,country,fee,photo,status] */
+const T=[["Aria Monroe","Musician","USA",45000,"1511671782779-c97d3d27a1d4","New"],["Kai Marlowe","DJ","Japan",9000,"1429962714451-bb934ecdc4ec","Available"],["Dr. Elena Voss","Speaker","USA",30000,"1573496359142-b8d87734a5a2","Booked until May"],["Jordan Blake","Musician","USA",18000,"1514525253161-7a46d19cd819","Available"],["Dylan Hartwell","Actor","Australia",60000,"1507003211169-0a1dd7228f2d","Available"],["Luca Ferrante","Actor","Italy",38000,"1500648767791-00dcc994a43e","New"],["Zara Okoye","Musician","Nigeria",22000,"1494790108377-be9c29b29330","Available"],["Theo Grant","Athlete","UK",25000,"1507003211169-0a1dd7228f2d","Available"],["Mateus Silva","DJ","Brazil",8000,"1429962714451-bb934ecdc4ec","Available"],["Nova Reyes","Musician","Canada",15000,"1438761681033-6461ffad8d80","Available"],["Marcus Vale","Speaker","UK",20000,"1500648767791-00dcc994a43e","Available"],["Mei Lin","Actor","Japan",28000,"1494790108377-be9c29b29330","Booked until June"],["Sam Callahan","Athlete","USA",35000,"1507003211169-0a1dd7228f2d","New"],["Ines Duarte","Musician","Brazil",12000,"1438761681033-6461ffad8d80","Available"]];
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],$$$=(a,f)=>a.map(f).join('');
+const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>'$'+n.toLocaleString();
+const NAV=[["","Home"],["about","About"],["services","Services"],["talent","Talent"],["events","Events"],["donate","Donate"],["track","Track bookings"],["contact","Contact"]];
+$('#links').innerHTML=$$$(NAV,n=>`<li class="nav-item"><a class="nav-link" data-r="${n[0]}" href="#/${n[0]}">${n[1]}</a></li>`);
+$('#flinks').innerHTML=$$$(NAV.slice(1),n=>`<a href="#/${n[0]}">${n[1]}</a>`);
+const opts='<option value="-1">Any artist or speaker</option>'+$$$(T,(t,i)=>`<option value="${i}">${t[0]}</option>`);
+$('#h-t').innerHTML=opts;
+const M=['January','February','March','April','May','June','July','August','September','October','November','December'];
+$('#h-d').innerHTML=$$$([...Array(31)],(_,i)=>`<option>${i+1}</option>`);$('#h-m').innerHTML=$$$(M,m=>`<option>${m}</option>`);$('#h-y').innerHTML=$$$([2026,2027,2028],y=>`<option>${y}</option>`);
+/* hero slides */
+const S=[["1501386761578-eac5c94b800a","BookMyStar","Book the name they came for.","Musicians, actors and keynote speakers for galas, weddings and launches across the USA.",[["Start request","#/","book()"],["See roster","#/talent"]]],["1459749411175-04bf5292ceea","Live music","A headline set, just for your guests.","From intimate acoustic sets to festival-grade productions, with riders and sound handled.",[["Our services","#/services"],["Book now","#/","book()"]]],["1470229722913-7c0e2dbbafd3","Already booked?","Follow every step of your booking.","Contract, deposit, travel and day-of schedule, with one reference code.",[["Track booking","#/track"],["Contact us","#/contact"]]],["1516450360452-9312f5e86fc7","Upcoming events","Tickets to nights worth dressing for.","Charity galas and private concerts supporting local causes.",[["View events","#/events"],["Donate","#/donate"]]]];
+$('#slides').innerHTML=$$$(S,(s,i)=>`<div class="swiper-slide"><img src="${U(s[0],1920)}" alt="" ${i?'loading="lazy"':''}><div class="slide-copy"><div class="container"><b>${s[1]}</b><h1>${s[2]}</h1><p>${s[3]}</p>${$$$(s[4],b=>`<a href="${b[1]}" ${b[2]?`onclick="${b[2]}"`:''} class="btn-fill light me-2 mb-2">${b[0]}</a>`)}</div></div></div>`);
+new Swiper('.hs',{effect:'fade',loop:true,speed:1100,autoplay:{delay:6500,disableOnInteraction:false},pagination:{el:'.swiper-pagination',clickable:true}});
+/* bento */
+const card=(i,c)=>{const t=T[i],st=t[5].startsWith('Booked')?'booked':t[5]=='New'?'new':'';return `<article class="t-card ${c}"><span class="badge-s ${st}">${t[5]}</span><img src="${U(t[4],c?1100:700)}" alt="${t[0]}" loading="lazy"><div class="t-body"><div class="t-meta"><span>${t[1]}</span><span><i class="bi bi-geo-alt"></i> ${t[2]}</span><span>From ${money(t[3])}</span></div><h3>${t[0]}</h3><a href="#/" class="btn-fill light" onclick="book(${i})">Book now</a></div></article>`};
+$('#bento').innerHTML=card(0,'t-large')+card(1,'')+card(2,'t-tall')+card(3,'');
+/* talent page */
+const C=['All countries',...new Set(T.map(t=>t[2]))],N=['All niches',...new Set(T.map(t=>t[1]))];
+$('#c-c').innerHTML=$$$(C,c=>`<option>${c}</option>`);$('#c-n').innerHTML=$$$(N,c=>`<option>${c}</option>`);
+let page=1;
+function grid(){const f=T.map((t,i)=>[t,i]).filter(([t])=>($('#c-c').value==C[0]||t[2]==$('#c-c').value)&&($('#c-n').value==N[0]||t[1]==$('#c-n').value));
+ const pages=Math.max(1,Math.ceil(f.length/6));page=Math.min(page,pages);
+ $('#grid').innerHTML=f.slice((page-1)*6,page*6).map(([t,i])=>`<div class="col-md-6 col-lg-4"><div style="height:360px">${card(i,'h-100')}</div></div>`).join('')||'<p class="text-center">No talent matches these filters. Try another country or niche.</p>';
+ $('#pg').innerHTML=$$$([...Array(pages)],(_,p)=>`<li class="page-item ${p+1==page?'active':''}"><a class="page-link" href="#/talent" data-p="${p+1}">${p+1}</a></li>`)}
+['#c-c','#c-n'].forEach(s=>$(s).addEventListener('change',()=>{page=1;grid()}));
+$('#pg').addEventListener('click',e=>{const p=e.target.dataset.p;if(p){e.preventDefault();page=+p;grid();scrollTo({top:0,behavior:'instant'})}});grid();
+/* services, faq, donate */
+$('#svc').innerHTML=$$$([["bi-mic","Talent booking","Musicians, actors, athletes and speakers matched to your event, budget and date."],["bi-file-earmark-text","Contracts and riders","Written agreements, itemised fees and technical riders handled for you."],["bi-airplane","Travel and logistics","Flights, hotels, ground transport and arrivals, in any city."],["bi-shield-lock","Privacy and security","NDAs, private arrivals and professional security on request."],["bi-calendar-event","Event delivery","An agent on site or on call, 24/7, until the night is done."],["bi-ticket-perforated","Ticketed events","Galas and concerts with ticketing and charity proceeds."]],s=>`<div class="col-md-6 col-lg-4"><div class="p-4 h-100" style="border:1px solid var(--line);border-radius:8px"><i class="bi ${s[0]} fs-2"></i><h3 class="fs-4 mt-3">${s[1]}</h3><p class="text-secondary mb-0">${s[2]}</p></div></div>`);
+$('#faq').innerHTML=$$$([["How far ahead should I book?","Three to six months is ideal for A-list talent. For rising artists and DJs, four weeks is often enough."],["Are fees all-inclusive?","Starting fees cover the appearance. Travel, production and hospitality are itemised in your quote."],["How do I pay?","A deposit secures the date and the balance is due before the event, both under a written agreement."],["What if the artist cancels?","We offer a replacement of equal standing or a full refund of your deposit."]],(q,i)=>`<div class="accordion-item"><h4 class="accordion-header"><button class="accordion-button ${i?'collapsed':''}" data-bs-toggle="collapse" data-bs-target="#q${i}">${q[0]}</button></h4><div id="q${i}" class="accordion-collapse collapse ${i?'':'show'}" data-bs-parent="#faq"><div class="accordion-body">${q[1]}</div></div></div>`);
+let amt=100;$('#amts').innerHTML=$$$([25,50,100,250],a=>`<button type="button" class="chip ${a==100?'on':''}" data-a="${a}">$${a}</button>`);
+$('#amts').addEventListener('click',e=>{if(!e.target.dataset.a)return;amt=+e.target.dataset.a;$$('.chip').forEach(c=>c.classList.toggle('on',c==e.target))});
+/* toast, orders */
+let tt;const toast=h=>{const t=$('#toast');t.innerHTML=h;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),9000)};
+const orders=()=>{try{return JSON.parse(localStorage.bms||'{}')}catch(e){return{}}};
+function book(i=-1,label){i=+i;$('#h-t').value=i;if(label)$('#h-t').dataset.l=label;else delete $('#h-t').dataset.l;location.hash='#/';setTimeout(()=>{scrollTo({top:0,behavior:'smooth'});$('#h-n').focus({preventScroll:true})},60)}
+$('#h-t').addEventListener('change',()=>delete $('#h-t').dataset.l);
+$('#hf').addEventListener('submit',e=>{e.preventDefault();const i=+$('#h-t').value,t=T[i],code='BMS-'+Math.floor(10000+Math.random()*90000),dd=+$('#h-d').value,mm=M.indexOf($('#h-m').value),yy=+$('#h-y').value,dt=new Date(yy,mm,dd),d=`${dd} ${M[mm]} ${yy}`,L=$('#h-t').dataset.l;
+ if(dt.getMonth()!=mm){toast('<b>That date does not exist</b><div class="small mt-1">Please choose a valid day for the month.</div>');return}
+ if(dt<new Date(new Date().setHours(0,0,0,0))){toast('<b>That date has passed</b><div class="small mt-1">Please choose a future date.</div>');return}
+ const o={name:$('#h-n').value,who:L||(t?t[0]:'Any artist or speaker'),price:L?'$500':t?money(t[3]):'Quote on request',date:d,at:Date.now()};
+ try{const all=orders();all[code]=o;localStorage.bms=JSON.stringify(all)}catch(x){}
+ toast(`<b>Request received, ${esc(o.name)}</b><div class="small mt-1">${o.who} · ${o.price}<br>${d} · Ref <b>${code}</b></div>`);e.target.reset();delete $('#h-t').dataset.l});
+$('#tf').addEventListener('submit',e=>{e.preventDefault();const c=$('#t-c').value.trim().toUpperCase(),o=orders()[c];
+ $('#tr').innerHTML=o?`<div class="p-4" style="border:1px solid var(--line);border-radius:8px"><h3 class="fs-4">${c}</h3><p class="mb-3 text-secondary">${o.who} · ${o.date} · ${o.price}</p><ul class="tl list-unstyled ms-1"><li>Request received</li><li class="todo">Availability confirmed</li><li class="todo">Contract and deposit</li><li class="todo">Event day</li></ul></div>`:'<div class="alert alert-dark">No booking found for that code. Check the reference in your confirmation and try again.</div>'});
+$('#df').addEventListener('submit',e=>{e.preventDefault();toast(`<b>Thank you, ${esc($('#d-n').value)}</b><div class="small mt-1">Your $${amt} gift is ready. Connect a payment provider to complete this step.</div>`)});
+$('#cf').addEventListener('submit',e=>{e.preventDefault();toast('<b>Message sent</b><div class="small mt-1">We reply within one business day.</div>');e.target.reset()});
+$('#nf').addEventListener('submit',e=>{e.preventDefault();toast('<b>You are on the list</b>');e.target.reset()});
+/* router, scroll fx, cursor, count */
+function route(){const v=location.hash.replace('#/','')||'home',ok=$$('[data-v]').some(x=>x.dataset.v==v),r=ok?v:'home';
+ $$('[data-v]').forEach(x=>x.hidden=x.dataset.v!=r);$('#nav').classList.toggle('inner',r!='home');$$('.nav-link').forEach(a=>a.classList.toggle('on',a.dataset.r==(r=='home'?'':r)));
+ scrollTo({top:0,behavior:'instant'});bootstrap.Offcanvas.getInstance($('#menu'))?.hide();setTimeout(()=>AOS.refresh(),50)}
+$('#menu').addEventListener('click',e=>{if(e.target.closest('a'))bootstrap.Offcanvas.getInstance($('#menu'))?.hide()});
+addEventListener('hashchange',route);route();AOS.init({duration:700,once:true});
+addEventListener('scroll',()=>{const y=scrollY;$('#nav').classList.toggle('scrolled',y>60);const max=document.documentElement.scrollHeight-innerHeight;$('#progress').style.width=(max>0?Math.min(y/max,1)*100:0)+'%'},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);const el=e.target,end=+el.dataset.count,t0=performance.now();(function k(t){const p=Math.min((t-t0)/1600,1);el.textContent=Math.round(end*(1-Math.pow(1-p,3))).toLocaleString()+(p==1?el.dataset.suf:'');if(p<1)requestAnimationFrame(k)})(t0)}),{threshold:.6});
+$$('[data-count]').forEach(el=>io.observe(el));
+$$('img').forEach(i=>i.addEventListener('error',()=>i.style.visibility='hidden'));
+</script>
+</body>
+</html>
