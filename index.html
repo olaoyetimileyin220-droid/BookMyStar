@@ -45,6 +45,11 @@ label{font-size:.85rem;font-weight:500;margin-bottom:.3rem}
 .scrolled .btn-fill.light::before,.inner .btn-fill.light::before{background:var(--ink)}
 .scrolled .btn-fill.light:hover,.inner .btn-fill.light:hover{color:#fff}
 .nav-link.on{box-shadow:inset 0 -2px var(--accent)}
+.lang{width:auto;max-width:120px;font-size:.85rem;font-weight:500;background-color:transparent;color:#fff;border-color:rgba(255,255,255,.6);padding:.35rem 1.7rem .35rem .65rem;--bs-form-select-bg-img:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");cursor:pointer}
+.lang option{color:#000}
+.scrolled .lang,.inner .lang{color:var(--ink);border-color:var(--ink);--bs-form-select-bg-img:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e")}
+@media(max-width:1199px){.navbar>.container{padding-inline:1.5rem}.navbar-toggler{padding:.4rem .65rem}}
+.skiptranslate iframe,.goog-te-banner-frame,.goog-tooltip{display:none!important}body{top:0!important}.goog-text-highlight{background:none!important;box-shadow:none!important}
 .oc-brand{font-family:var(--head);font-weight:700;font-size:1.4rem}
 @media(max-width:1199px){
 .offcanvas{--bs-offcanvas-width:min(320px,85vw);background:#000;color:#fff}
@@ -70,6 +75,7 @@ label{font-size:.85rem;font-weight:500;margin-bottom:.3rem}
 .hform{position:absolute;z-index:5;left:50%;bottom:2.2rem;transform:translateX(-50%);width:min(1180px,94vw);background:#fff;color:#000;border-radius:var(--r);padding:1.1rem 1.2rem;box-shadow:0 20px 60px rgba(0,0,0,.35)}
 @media(max-width:991px){.hero{min-height:900px}.slide-copy{inset:0 0 430px}}
 .stats{padding:5rem 0;border-bottom:1px solid var(--line)}
+.stat{border-right:1px solid var(--line)}.stat:last-child{border-right:0}
 .stat b{display:block;font-family:var(--head);font-weight:600;font-size:clamp(2.8rem,6vw,5rem);line-height:1;letter-spacing:-.04em}.stat span{color:var(--mute)}
 .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,300px);gap:1rem}
 .t-card{position:relative;overflow:hidden;border-radius:var(--r);color:#fff;background:#111}
@@ -101,14 +107,15 @@ footer .form-control{background:transparent;border-color:#666;color:#fff}footer 
 .tl li{padding:.6rem 0 .6rem 1.6rem;position:relative;border-left:2px solid var(--line)}.tl li::before{content:"";position:absolute;left:-7px;top:1rem;width:12px;height:12px;border-radius:50%;background:var(--accent)}.tl li.todo::before{background:#ccc}
 #toast{position:fixed;right:1rem;bottom:1rem;z-index:4000;width:min(360px,92vw);background:#000;color:#fff;border-radius:var(--r);padding:1.1rem 1.2rem;border-left:4px solid var(--accent);transform:translateX(130%);visibility:hidden;transition:transform .5s,visibility .5s;box-shadow:0 14px 40px rgba(0,0,0,.35)}
 #toast.show{transform:none;visibility:visible}
-@media(max-width:767px){.row.g-5{--bs-gutter-x:1.5rem}.stat b{font-size:2.3rem}footer a,footer span{overflow-wrap:anywhere}section{padding:4.5rem 0}.stats{padding:3rem 0}.page{padding-top:7rem}.glass{padding:1.5rem}.t-large h3{font-size:2rem}.slide-copy p{font-size:1rem}footer{padding:3.5rem 0 2rem}.hero .swiper-pagination{right:.6rem}}
+@media(max-width:767px){.stat:nth-child(even){border-right:0}.row.g-5{--bs-gutter-x:1.5rem}.stat b{font-size:2.3rem}footer a,footer span{overflow-wrap:anywhere}section{padding:4.5rem 0}.stats{padding:3rem 0}.page{padding-top:7rem}.glass{padding:1.5rem}.t-large h3{font-size:2rem}.slide-copy p{font-size:1rem}footer{padding:3.5rem 0 2rem}.hero .swiper-pagination{right:.6rem}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div id="progress"></div>
 <nav class="navbar navbar-expand-xl fixed-top" id="nav"><div class="container">
- <a class="navbar-brand" href="#/">BookMyStar</a>
+ <a class="navbar-brand" href="#/" translate="no">BookMyStar</a>
+ <select id="lang" class="form-select lang ms-auto me-2 ms-xl-3 me-xl-0 order-xl-last" aria-label="Language" translate="no"></select>
  <button class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#menu" aria-controls="menu" aria-label="Open menu"><i class="bi bi-list fs-3"></i></button>
  <div class="offcanvas offcanvas-end" tabindex="-1" id="menu" aria-label="Main menu">
   <div class="offcanvas-header"><span class="oc-brand">BookMyStar</span><button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close menu"></button></div>
@@ -169,7 +176,7 @@ footer .form-control{background:transparent;border-color:#666;color:#fff}footer 
 <div data-v="donate" class="page" hidden><div class="container"><div class="row g-5"><div class="col-lg-5"><h2>Support music and the arts</h2><p class="lead-s mt-4">A share of every gala goes to local music education and youth arts programs. Your gift helps fund instruments, lessons and stage time for students who would otherwise go without.</p></div>
  <div class="col-lg-6 offset-lg-1"><form id="df" class="row g-3"><div class="col-12"><label>Amount (USD)</label><div id="amts" class="d-flex flex-wrap gap-2"></div></div>
  <div class="col-md-6"><label for="d-n">Full name</label><input id="d-n" class="form-control" required></div><div class="col-md-6"><label for="d-e">Email</label><input id="d-e" type="email" class="form-control" required></div>
- <div class="col-12"><label for="d-m">Message (optional)</label><textarea id="d-m" class="form-control" rows="3"></textarea></div><div class="col-12"><button class="btn-fill solid">Continue to payment</button></div></form></div></div></div></div>
+ <div class="col-12"><label for="d-m">Message (optional)</label><textarea id="d-m" class="form-control" rows="3"></textarea></div><div class="col-12" id="pm"></div><div class="col-12"><button class="btn-fill solid">Continue to payment</button></div></form></div></div></div></div>
 <!-- TRACK -->
 <div data-v="track" class="page" hidden><div class="container" style="max-width:720px"><h2>Track your booking</h2><p class="lead-s mt-3">Enter the reference code from your confirmation, for example BMS-48213.</p>
  <form id="tf" class="d-flex gap-2 mt-4"><input id="t-c" class="form-control" placeholder="BMS-00000" required aria-label="Order code"><button class="btn-fill solid text-nowrap">Track</button></form><div id="tr" class="mt-4"></div></div></div>
@@ -223,8 +230,12 @@ $('#pg').addEventListener('click',e=>{const p=e.target.dataset.p;if(p){e.prevent
 /* services, faq, donate */
 $('#svc').innerHTML=$$$([["bi-mic","Talent booking","Musicians, actors, athletes and speakers matched to your event, budget and date."],["bi-file-earmark-text","Contracts and riders","Written agreements, itemised fees and technical riders handled for you."],["bi-airplane","Travel and logistics","Flights, hotels, ground transport and arrivals, in any city."],["bi-shield-lock","Privacy and security","NDAs, private arrivals and professional security on request."],["bi-calendar-event","Event delivery","An agent on site or on call, 24/7, until the night is done."],["bi-ticket-perforated","Ticketed events","Galas and concerts with ticketing and charity proceeds."]],s=>`<div class="col-md-6 col-lg-4"><div class="p-4 h-100" style="border:1px solid var(--line);border-radius:8px"><i class="bi ${s[0]} fs-2"></i><h3 class="fs-4 mt-3">${s[1]}</h3><p class="text-secondary mb-0">${s[2]}</p></div></div>`);
 $('#faq').innerHTML=$$$([["How far ahead should I book?","Three to six months is ideal for A-list talent. For rising artists and DJs, four weeks is often enough."],["Are fees all-inclusive?","Starting fees cover the appearance. Travel, production and hospitality are itemised in your quote."],["How do I pay?","A deposit secures the date and the balance is due before the event, both under a written agreement."],["What if the artist cancels?","We offer a replacement of equal standing or a full refund of your deposit."]],(q,i)=>`<div class="accordion-item"><h4 class="accordion-header"><button class="accordion-button ${i?'collapsed':''}" data-bs-toggle="collapse" data-bs-target="#q${i}">${q[0]}</button></h4><div id="q${i}" class="accordion-collapse collapse ${i?'':'show'}" data-bs-parent="#faq"><div class="accordion-body">${q[1]}</div></div></div>`);
-let amt=100;$('#amts').innerHTML=$$$([25,50,100,250],a=>`<button type="button" class="chip ${a==100?'on':''}" data-a="${a}">$${a}</button>`);
-$('#amts').addEventListener('click',e=>{if(!e.target.dataset.a)return;amt=+e.target.dataset.a;$$('.chip').forEach(c=>c.classList.toggle('on',c==e.target))});
+/* PAYMENTS: paste your hosted payment URLs here. Leave '' for any you do not use. Never put secret keys (sk_...) in this file. */
+const PAY={stripe:{25:'',50:'',100:'',250:'',custom:''},paypal:''};
+let amt=100;$('#amts').innerHTML=$$$([25,50,100,250,'custom'],a=>`<button type="button" class="chip ${a==100?'on':''}" data-a="${a}">${a=='custom'?'Other amount':'$'+a}</button>`);
+const PM=[['stripe','Card, Apple Pay or Google Pay (Stripe)',Object.values(PAY.stripe).some(Boolean)],['paypal','PayPal',!!PAY.paypal]].filter(m=>m[2]);
+$('#pm').innerHTML=PM.length>1?'<label>Payment method</label>'+$$$(PM,(m,i)=>`<div class="form-check"><input class="form-check-input" type="radio" name="pm" id="pm-${m[0]}" value="${m[0]}" ${i?'':'checked'}><label class="form-check-label" for="pm-${m[0]}">${m[1]}</label></div>`):'';
+$('#amts').addEventListener('click',e=>{if(!e.target.dataset.a)return;amt=e.target.dataset.a=='custom'?'custom':+e.target.dataset.a;$$('.chip').forEach(c=>c.classList.toggle('on',c==e.target))});
 /* toast, orders */
 let tt;const toast=h=>{const t=$('#toast');t.innerHTML=h;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),9000)};
 const orders=()=>{try{return JSON.parse(localStorage.bms||'{}')}catch(e){return{}}};
@@ -238,7 +249,10 @@ $('#hf').addEventListener('submit',e=>{e.preventDefault();const i=+$('#h-t').val
  toast(`<b>Request received, ${esc(o.name)}</b><div class="small mt-1">${o.who} · ${o.price}<br>${d} · Ref <b>${code}</b></div>`);e.target.reset();delete $('#h-t').dataset.l});
 $('#tf').addEventListener('submit',e=>{e.preventDefault();const c=$('#t-c').value.trim().toUpperCase(),o=orders()[c];
  $('#tr').innerHTML=o?`<div class="p-4" style="border:1px solid var(--line);border-radius:8px"><h3 class="fs-4">${c}</h3><p class="mb-3 text-secondary">${o.who} · ${o.date} · ${o.price}</p><ul class="tl list-unstyled ms-1"><li>Request received</li><li class="todo">Availability confirmed</li><li class="todo">Contract and deposit</li><li class="todo">Event day</li></ul></div>`:'<div class="alert alert-dark">No booking found for that code. Check the reference in your confirmation and try again.</div>'});
-$('#df').addEventListener('submit',e=>{e.preventDefault();toast(`<b>Thank you, ${esc($('#d-n').value)}</b><div class="small mt-1">Your $${amt} gift is ready. Connect a payment provider to complete this step.</div>`)});
+$('#df').addEventListener('submit',e=>{e.preventDefault();
+ const m=(document.querySelector('input[name=pm]:checked')||{value:PM[0]&&PM[0][0]}).value,url=m==='paypal'?PAY.paypal:PAY.stripe[amt];
+ if(!/^https:\/\//.test(url||'')){toast('<b>Payments are not connected yet</b><div class="small mt-1">Please contact us to give by bank transfer or card.</div>');return}
+ location.href=m==='paypal'?url:url+(url.includes('?')?'&':'?')+'prefilled_email='+encodeURIComponent($('#d-e').value)});
 $('#cf').addEventListener('submit',e=>{e.preventDefault();toast('<b>Message sent</b><div class="small mt-1">We reply within one business day.</div>');e.target.reset()});
 $('#nf').addEventListener('submit',e=>{e.preventDefault();toast('<b>You are on the list</b>');e.target.reset()});
 /* router, scroll fx, cursor, count */
@@ -252,5 +266,19 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return
 $$('[data-count]').forEach(el=>io.observe(el));
 $$('img').forEach(i=>i.addEventListener('error',()=>i.style.visibility='hidden'));
 </script>
+<div id="gt" style="display:none"></div>
+<script>
+const LG=[['en','English'],['es','Español'],['fr','Français'],['de','Deutsch'],['pt','Português'],['it','Italiano'],['nl','Nederlands'],['sv','Svenska'],['pl','Polski'],['ru','Русский'],['uk','Українська'],['tr','Türkçe'],['el','Ελληνικά'],['zh-CN','中文 (简体)'],['zh-TW','中文 (繁體)'],['ja','日本語'],['ko','한국어'],['hi','हिन्दी'],['th','ไทย'],['vi','Tiếng Việt'],['id','Bahasa Indonesia'],['ar','العربية'],['he','עברית']];
+const L=document.getElementById('lang');
+L.innerHTML=LG.map(l=>`<option value="${l[0]}">${l[1]}</option>`).join('');
+L.value=((document.cookie.match(/googtrans=\/en\/([^;]+)/)||[])[1])||'en';
+L.addEventListener('change',()=>{const v=L.value;
+ if(v==='en'){['','; domain='+location.hostname].forEach(d=>document.cookie='googtrans=; path=/; max-age=0'+d);location.reload();return}
+ document.cookie='googtrans=/en/'+v+'; path=/';
+ const c=document.querySelector('.goog-te-combo');
+ if(c){c.value=v;c.dispatchEvent(new Event('change'))}else location.reload()});
+function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',autoDisplay:false},'gt')}
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </body>
 </html>
